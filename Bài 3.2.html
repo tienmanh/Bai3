@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+        var header = '<table border="1"<tr id="tieude>"><td>No</td><td>Tên</td><td>Số lượng</td><td>Đơn giá</td><td>Tổng tiền</td></tr>';
+        var data = '';
+        var footer = '</table>';
+        var total = 0;
+        var no = 1;
+        function productAdd() {
+            var path = document.frm_product;
+            var name = path.txt_name.value;
+            var quantity = path.txt_quantity.value;
+            var price = path.txt_price.value;
+            var sub_total = quantity * price;
+            total += sub_total;
+            var sub_data_one = '<tr><td>' + no + '</td><td>' + name + '</td><td>' + quantity + '</td><td>' + price + '$</td><td>' + sub_total + '$</td></tr>';
+            var sub_data_two = '<tr><td colspan="4">Tổng:</td><td>' + total + '$</td></tr>';
+            data += sub_data_one;
+            document.getElementById('product_list').innerHTML = header + data + sub_data_two + footer;
+            no++;
+        }
+    </script>
+    <link rel="stylesheet" href="Bài 3.2.css">
+</head>
+
+<body>
+    <div class="all">
+        <form name="frm_product" action="#" method="post">
+            Tên sản phẩm: <input type="text" name="txt_name" value="">
+            <br>
+            Số lượng: <input type="text" name="txt_quantity" value="">
+            <br>
+            Đơn giá: <input type="text" name="txt_price" value="">
+            <br>
+            <input type="button" onclick="productAdd();" value="Add" id="them">
+        </form>
+        <div id="product_list">&nbsp;</div>
+    </div>
+</body>
+
+</html>
